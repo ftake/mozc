@@ -34,8 +34,10 @@
 #include <vector>
 
 #include "base/port.h"
+#include "unix/ibus/ibus_config.h"
 #include "unix/ibus/ibus_header.h"
 #include "unix/ibus/property_handler_interface.h"
+
 
 namespace mozc {
 
@@ -50,7 +52,8 @@ class PropertyHandler : public PropertyHandlerInterface {
  public:
   // This class takes the ownership of translator, but not client.
   PropertyHandler(MessageTranslatorInterface *translator,
-                  client::ClientInterface *client);
+                  client::ClientInterface *client,
+                  IbusConfig &ibus_config);
   virtual ~PropertyHandler();
 
   virtual void Register(IBusEngine *engine);

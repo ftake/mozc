@@ -31,8 +31,13 @@ syntax = "proto2";
 
 package mozc.ibus;
 
+import "protocol/commands.proto";
+
 message Config {
   repeated Engine engines = 1;
+  // TODO: consider whether these properties should be Engine's or not.
+  optional bool activated_on_launch = 2;
+  optional mozc.commands.CompositionMode initial_composition_mode = 3 [default = HIRAGANA];
 }
 
 message Engine {

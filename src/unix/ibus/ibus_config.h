@@ -39,7 +39,9 @@ namespace mozc {
 
 class IbusConfig {
  public:
-  IbusConfig() : default_layout_("default") {}
+  IbusConfig() : default_layout_("default") {
+      InitEnginesXml();
+  }
   virtual ~IbusConfig() = default;
 
   // Disallow implicit constructors.

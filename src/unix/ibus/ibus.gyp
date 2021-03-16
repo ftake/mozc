@@ -154,6 +154,7 @@
       ],
       'dependencies': [
         '../../protobuf/protobuf.gyp:protobuf',
+        '../../protocol/protocol.gyp:*',
         'genproto_ibus_config_proto#host',
       ],
       'export_dependent_settings': [

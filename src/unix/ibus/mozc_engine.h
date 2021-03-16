@@ -125,6 +125,8 @@ class MozcEngine : public EngineInterface {
   // message, then hides a preedit string and the candidate window.
   void RevertSession(IBusEngine *engine);
 
+  IbusConfig ibus_config_;
+
   CandidateWindowHandlerInterface *GetCandidateWindowHandler(
       IBusEngine *engine);
 
@@ -149,7 +151,6 @@ class MozcEngine : public EngineInterface {
 
   // Unique IDs of candidates that are currently shown.
   std::vector<int32> unique_candidate_ids_;
-  IbusConfig ibus_config_;
 
   friend class LaunchToolTest;
   FRIEND_TEST(LaunchToolTest, LaunchToolTest);

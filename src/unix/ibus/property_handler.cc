@@ -88,7 +88,8 @@ const bool kActivatedOnLaunch = true;
 }  // namespace
 
 PropertyHandler::PropertyHandler(MessageTranslatorInterface *translator,
-                                 client::ClientInterface *client)
+                                 client::ClientInterface *client,
+                                 IbusConfig &ibus_config)
     : prop_root_(ibus_prop_list_new()),
       prop_composition_mode_(nullptr),
       prop_mozc_tool_(nullptr),
@@ -98,12 +99,13 @@ PropertyHandler::PropertyHandler(MessageTranslatorInterface *translator,
       is_activated_(kActivatedOnLaunch),
       is_disabled_(false) {
   commands::SessionCommand command;
-  if (is_activated_) {
+  auto config = ibus_config.GetConfig();
+  if (config.activated_on_launch()) {
     command.set_type(commands::SessionCommand::TURN_ON_IME);
   } else {
     command.set_type(commands::SessionCommand::TURN_OFF_IME);
   }
-  command.set_composition_mode(original_composition_mode_);
+  command.set_composition_mode(config.initial_composition_mode());
   commands::Output output;
   if (!client->SendCommand(command, &output)) {
     LOG(ERROR) << "SendCommand failed";

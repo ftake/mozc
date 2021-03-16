@@ -244,7 +244,7 @@ MozcEngine::MozcEngine()
       selection_monitor_(SelectionMonitorFactory::Create(1024)),
 #endif  // MOZC_ENABLE_X11_SELECTION_MONITOR
       property_handler_(new PropertyHandler(
-          new LocaleBasedMessageTranslator(GetMessageLocale()), client_.get())),
+          new LocaleBasedMessageTranslator(GetMessageLocale()), client_.get(), ibus_config_)),
       preedit_handler_(new PreeditHandler()),
 #ifdef ENABLE_GTK_RENDERER
       gtk_candidate_window_handler_(
@@ -258,7 +258,6 @@ MozcEngine::MozcEngine()
   }
 #endif  // MOZC_ENABLE_X11_SELECTION_MONITOR
 
-  ibus_config_.InitEnginesXml();
 
   // TODO(yusukes): write a unit test to check if the capability is set
   // as expected.
